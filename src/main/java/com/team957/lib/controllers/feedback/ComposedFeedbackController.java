@@ -1,5 +1,5 @@
 /**
-Copyright 2022-2023 FRC Team 997
+Copyright 2022-2023 FRC Teams 957 and 997
 
 This program is free software: 
 you can redistribute it and/or modify it under the terms of the 
@@ -16,11 +16,10 @@ If not, see <https://www.gnu.org/licenses/>.
 */
 package com.team957.lib.controllers.feedback;
 
+import com.team957.lib.math.filters.Filter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import com.team957.lib.math.filters.Filter;
 
 /**
  * A controller made of a sum of filters, each multiplied by a constant gain. Instead of the input

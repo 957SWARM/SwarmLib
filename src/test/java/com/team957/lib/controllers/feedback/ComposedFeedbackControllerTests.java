@@ -1,5 +1,5 @@
 /**
-Copyright 2022-2023 FRC Team 997
+Copyright 2022-2023 FRC Teams 957 and 997
 
 This program is free software: 
 you can redistribute it and/or modify it under the terms of the 
@@ -18,12 +18,10 @@ package com.team957.lib.controllers.feedback;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.Map;
-
-import org.junit.Test;
-
 import com.team957.lib.math.filters.DifferentiatingFilter;
 import com.team957.lib.math.filters.NullFilter;
+import java.util.Map;
+import org.junit.Test;
 
 public class ComposedFeedbackControllerTests {
     private final double epsilon = 0.0001;

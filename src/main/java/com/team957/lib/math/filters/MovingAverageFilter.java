@@ -1,5 +1,5 @@
 /**
-Copyright 2022-2023 FRC Team 997
+Copyright 2022-2023 FRC Teams 957 and 997
 
 This program is free software: 
 you can redistribute it and/or modify it under the terms of the 
@@ -16,10 +16,9 @@ If not, see <https://www.gnu.org/licenses/>.
 */
 package com.team957.lib.math.filters;
 
-import java.util.ArrayList;
-
 import com.team957.lib.math.UtilityMath;
 import com.team957.lib.util.SizedStack;
+import java.util.ArrayList;
 
 /** Filter which computes the arithmetic mean of a stream of data. */
 public class MovingAverageFilter extends Filter {

@@ -1,5 +1,5 @@
 /**
-Copyright 2022-2023 FRC Team 997
+Copyright 2022-2023 FRC Teams 957 and 997
 
 This program is free software: 
 you can redistribute it and/or modify it under the terms of the 
@@ -16,10 +16,9 @@ If not, see <https://www.gnu.org/licenses/>.
 */
 package com.team957.lib.commands;
 
+import com.team957.lib.telemetry.HighLevelLogger;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import java.util.function.Supplier;
-
-import com.team957.lib.telemetry.HighLevelLogger;
 
 /**
  * Simple command to log a message to the default DataLog (given by {@code

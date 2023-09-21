@@ -1,5 +1,5 @@
 /**
-Copyright 2022-2023 FRC Team 997
+Copyright 2022-2023 FRC Teams 957 and 997
 
 This program is free software: 
 you can redistribute it and/or modify it under the terms of the 
@@ -18,13 +18,11 @@ package com.team957.lib.trajectory.motionProfile;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.junit.Test;
-
 import com.team957.lib.trajectory.motionProfile.AsymmetricTrapezoidProfile.*;
 import com.team957.lib.trajectory.motionProfile.MotionProfile.State;
+import java.util.ArrayList;
+import java.util.List;
+import org.junit.Test;
 
 /** Tests for the AsymmetricTrapezoidProfile. */
 public class AsymmetricTrapezoidProfileTests {

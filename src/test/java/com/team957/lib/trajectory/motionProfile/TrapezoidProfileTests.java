@@ -1,5 +1,5 @@
 /**
-Copyright 2022-2023 FRC Team 997
+Copyright 2022-2023 FRC Teams 957 and 997
 
 This program is free software: 
 you can redistribute it and/or modify it under the terms of the 
@@ -18,10 +18,9 @@ package com.team957.lib.trajectory.motionProfile;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Test;
-
 import com.team957.lib.trajectory.motionProfile.MotionProfile.*;
 import com.team957.lib.trajectory.motionProfile.TrapezoidProfile.Constraints;
+import org.junit.Test;
 
 /**
  * Tests for the TrapezoidProfile.

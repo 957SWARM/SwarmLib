@@ -1,5 +1,5 @@
 /**
-Copyright 2023 FRC Team 997
+Copyright 2023 FRC Teams 957 and 997
 
 This program is free software: 
 you can redistribute it and/or modify it under the terms of the 
@@ -17,7 +17,6 @@ If not, see <https://www.gnu.org/licenses/>.
 package com.team957.lib.telemetry;
 
 import com.team957.lib.telemetry.Logger.LoggerFactory;
-
 import edu.wpi.first.util.datalog.DataLog;
 import edu.wpi.first.wpilibj.RobotController;
 

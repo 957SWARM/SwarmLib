@@ -1,5 +1,5 @@
 /**
-Copyright 2022-2023 FRC Team 997
+Copyright 2022-2023 FRC Teams 957 and 997
 
 This program is free software: 
 you can redistribute it and/or modify it under the terms of the 
@@ -16,14 +16,13 @@ If not, see <https://www.gnu.org/licenses/>.
 */
 package com.team957.lib.math;
 
+import com.team957.lib.util.Tuple2;
 import edu.wpi.first.math.Matrix;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.numbers.N2;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.team957.lib.util.Tuple2;
 
 /** Various useful small math functions. */
 public class UtilityMath {

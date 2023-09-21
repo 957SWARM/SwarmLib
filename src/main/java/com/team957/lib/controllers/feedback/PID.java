@@ -1,5 +1,5 @@
 /**
-Copyright 2022-2023 FRC Team 997
+Copyright 2022-2023 FRC Teams 957 and 997
 
 This program is free software: 
 you can redistribute it and/or modify it under the terms of the 
@@ -16,15 +16,14 @@ If not, see <https://www.gnu.org/licenses/>.
 */
 package com.team957.lib.controllers.feedback;
 
-import edu.wpi.first.math.MathUtil;
-import edu.wpi.first.util.datalog.DataLog;
-import java.util.Objects;
-
 import com.team957.lib.math.UtilityMath;
 import com.team957.lib.telemetry.IntrinsicLoggable;
 import com.team957.lib.telemetry.Logger;
 import com.team957.lib.telemetry.Logger.LoggerFactory;
 import com.team957.lib.util.SizedStack;
+import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.util.datalog.DataLog;
+import java.util.Objects;
 
 /**
  * Implementation of a simple Proportional-Integral-Derivative feedback controller.
