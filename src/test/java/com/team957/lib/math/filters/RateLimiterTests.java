@@ -1,5 +1,5 @@
 /**
-Copyright $YEAR FRC Teams 957 and 997
+Copyright 2022 FRC Team 997
 
 This program is free software: 
 you can redistribute it and/or modify it under the terms of the 
@@ -14,3 +14,22 @@ See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along with SpartanLib2. 
 If not, see <https://www.gnu.org/licenses/>.
 */
+package com.team957.lib.math.filters;
+
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+
+public class RateLimiterTests {
+    private final double epsilon = 0.0001;
+
+    @Test
+    public void RateLimiterFunctional() {
+        RateLimiter limiter = new RateLimiter(5);
+
+        assertEquals(2, limiter.calculate(2, 1), epsilon);
+        assertEquals(7, limiter.calculate(10, 1), epsilon);
+        assertEquals(2, limiter.calculate(-5, 1), epsilon);
+        assertEquals(0, limiter.calculate(0, 1), epsilon);
+    }
+}
