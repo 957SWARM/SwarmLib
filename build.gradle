@@ -34,7 +34,6 @@ test {
 }
 
 spotless {
-	ratchetFrom('origin/dev')
 	format 'misc', {
 		target fileTree(rootDir) {
 			include '*.gradle', '.gitignore'
