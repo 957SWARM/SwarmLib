@@ -37,7 +37,6 @@ test {
 }
 
 spotless {
-	ratchetFrom('origin/dev')
 	format 'misc', {
 		target fileTree(rootDir) {
 			include '*.gradle', '.gitignore'
@@ -142,9 +141,9 @@ publishing {
 				}
 
 				scm {
-					connection = 'scm:git:https://github.com/Team997Coders/spartanLib2.git'
-					developerConnection = 'scm:git:https://github.com/Team997Coders/spartanLib2.git'
-					url = 'https://github.com/Team997Coders/spartanLib2'
+					connection = 'scm:git:https://github.com/957SWARM/SwarmLib.git'
+					developerConnection = 'scm:git:https://github.com/957SWARM/SwarmLib.git'
+					url = 'https://github.com/957SWARM/SwarmLib'
 				}
 			}
 

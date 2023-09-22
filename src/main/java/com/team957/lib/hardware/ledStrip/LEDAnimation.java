@@ -1,5 +1,5 @@
 /**
-Copyright $YEAR FRC Teams 957 and 997
+Copyright 2023 FRC Teams 957 and 997
 
 This program is free software: 
 you can redistribute it and/or modify it under the terms of the 
@@ -14,3 +14,24 @@ See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along with SpartanLib2. 
 If not, see <https://www.gnu.org/licenses/>.
 */
+package com.team957.lib.hardware.ledStrip;
+
+/**
+ * Interface for LEDAnimation sequences, which can pre-generated or made at runtime by implementing
+ * classes.
+ */
+public interface LEDAnimation {
+    /**
+     * Returns the number of pixels per each frame.
+     *
+     * @return The expected number of pixels contained by every frame.
+     */
+    int numberOfPixelsPerFrame();
+
+    /**
+     * Returns the current frame of the LEDAnimation.
+     *
+     * @return The LEDAnimation to display.
+     */
+    LEDAnimationFrame getNextFrame();
+}
