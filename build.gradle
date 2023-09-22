@@ -104,16 +104,16 @@ repositories {
 publishing {
 	publications {
 		maven(MavenPublication) {
-			groupId 'org.chsrobotics.lib'
-			artifactId 'spartanLib2'
+			groupId 'com.team957.lib'
+			artifactId 'SwarmLib'
 			version VERSION
 
 			from components.java
 
 			pom {
-				name = 'spartanLib2'
-				description = 'FRC library for team 997. Provides common reusable components for interfacing with WPILib.'
-				url = 'https://github.com/Team997Coders/spartanLib2'
+				name = 'SwarmLib'
+				description = 'FRC library for team 957.'
+				url = 'https://github.com/957Swarm/SwarmLib'
 
 				licenses {
 					license {
@@ -123,8 +123,8 @@ publishing {
 				}
 
 				organization {
-					name = 'Team997Coders'
-					url = 'https://www.chsrobotics.org'
+					name = '957Swarm'
+					url = 'https://www.team957.com'
 				}
 
 				developers {
