@@ -17,10 +17,12 @@ If not, see <https://www.gnu.org/licenses/>.
 package com.team957.lib.commands;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Subsystem;
+import java.util.Set;
 
 /** Command which starts a timer when it is scheduled. */
-public class TimerCommand extends CommandBase {
+public class TimerCommand extends Command {
     private final Timer timer = new Timer();
 
     /** Constructs a TimerCommand. */
@@ -29,7 +31,6 @@ public class TimerCommand extends CommandBase {
         timer.reset();
     }
 
-    @Override
     public void initialize() {
         timer.start();
     }
@@ -41,5 +42,9 @@ public class TimerCommand extends CommandBase {
      */
     public double getTimeElapsed() {
         return timer.get();
+    }
+
+    public Set<Subsystem> getRequirements() {
+        return Set.of();
     }
 }
