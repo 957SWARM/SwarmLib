@@ -7,7 +7,7 @@ plugins {
 	id("com.github.spotbugs") version "5.0.14"
 }
 
-def VERSION = "1.4.1"
+def VERSION = "1.5.0"
 
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
