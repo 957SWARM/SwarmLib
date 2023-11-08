@@ -11,7 +11,7 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
 See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License along with SpartanLib2. 
+You should have received a copy of the GNU General Public License along with this program. 
 If not, see <https://www.gnu.org/licenses/>.
 */
 package com.team957.lib.math.filters;
@@ -25,8 +25,13 @@ public class MovingAverageFilter extends Filter {
 
     /** Enum of different definitions of the mean. */
     public enum MEAN_IMPLEMENTATION {
+        /** Sum of terms / number of terms. */
         ARITHMETIC,
+
+        /** The (number of terms)-th root of the product of terms. */
         GEOMETRIC,
+
+        /** Reciprocal of arithmetic mean of reciprocals of terms. */
         HARMONIC
     }
 
@@ -41,6 +46,7 @@ public class MovingAverageFilter extends Filter {
      *
      * @param window Number of values to look back when calculating the average. If zero or
      *     negative, will be an indefinite window.
+     * @param impl Implementation of the mean to use.
      */
     public MovingAverageFilter(int window, MEAN_IMPLEMENTATION impl) {
         stack = new SizedStack<>(window);
@@ -49,7 +55,7 @@ public class MovingAverageFilter extends Filter {
 
     @Override
     /** {@inheritDoc} */
-    public double calculate(double value) {
+    public double calculate(double value, double dtSeconds) {
         stack.push(value);
 
         if (impl == MEAN_IMPLEMENTATION.GEOMETRIC) {
@@ -61,12 +67,6 @@ public class MovingAverageFilter extends Filter {
         }
 
         return currentOutput;
-    }
-
-    @Override
-    /** {@inheritDoc} */
-    public double calculate(double value, double dtSeconds) {
-        return calculate(value);
     }
 
     @Override

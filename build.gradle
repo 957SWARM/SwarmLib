@@ -4,9 +4,10 @@ plugins {
 	id 'com.diffplug.spotless' version '6.11.0'
 	id 'maven-publish'
 	id 'signing'
+	id("com.github.spotbugs") version "5.0.14"
 }
 
-def VERSION = "1.4.1"
+def VERSION = "1.5.0"
 
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
@@ -20,6 +21,8 @@ dependencies {
 	implementation group: 'org.apache.commons', name: 'commons-math3', version: '3.6.1'
 
 	testImplementation 'junit:junit:4.13.2'
+
+	compileOnly "com.github.spotbugs:spotbugs-annotations:${spotbugs.toolVersion.get()}"
 }
 
 if (hasProperty('buildScan')) {
@@ -57,6 +60,12 @@ javadoc {
 	if(JavaVersion.current().isJava9Compatible()) {
 		options.addBooleanOption('html5', true)
 	}
+
+	options.memberLevel = JavadocMemberLevel.PUBLIC
+}
+
+spotbugs {
+	ignoreFailures = true // don't want spotbugs failing CI, although it should still be run
 }
 
 java {
@@ -95,16 +104,16 @@ repositories {
 publishing {
 	publications {
 		maven(MavenPublication) {
-			groupId 'org.chsrobotics.lib'
-			artifactId 'spartanLib2'
+			groupId 'com.team957.lib'
+			artifactId 'SwarmLib'
 			version VERSION
 
 			from components.java
 
 			pom {
-				name = 'spartanLib2'
-				description = 'FRC library for team 997. Provides common reusable components for interfacing with WPILib.'
-				url = 'https://github.com/Team997Coders/spartanLib2'
+				name = 'SwarmLib'
+				description = 'FRC library for team 957.'
+				url = 'https://github.com/957Swarm/SwarmLib'
 
 				licenses {
 					license {
@@ -114,8 +123,8 @@ publishing {
 				}
 
 				organization {
-					name = 'Team997Coders'
-					url = 'https://www.chsrobotics.org'
+					name = '957Swarm'
+					url = 'https://www.team957.com'
 				}
 
 				developers {

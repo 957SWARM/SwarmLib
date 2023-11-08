@@ -11,7 +11,7 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
 See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License along with SpartanLib2. 
+You should have received a copy of the GNU General Public License along with this program. 
 If not, see <https://www.gnu.org/licenses/>.
 */
 package com.team957.lib.hardware.ledStrip;
@@ -70,7 +70,7 @@ public class LEDStrip {
         for (int i = 0; i < frame.numberOfPixels(); i++) {
             if (i < length) {
                 RGBColor pixel = frame.getPixel(i);
-                buffer.setRGB(i, pixel.r, pixel.g, pixel.b);
+                buffer.setRGB(i, pixel.r(), pixel.g(), pixel.b());
             }
         }
     }

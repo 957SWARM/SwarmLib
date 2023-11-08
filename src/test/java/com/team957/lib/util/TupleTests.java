@@ -11,7 +11,7 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
 See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License along with SpartanLib2. 
+You should have received a copy of the GNU General Public License along with this program. 
 If not, see <https://www.gnu.org/licenses/>.
 */
 package com.team957.lib.util;
@@ -23,14 +23,14 @@ import org.junit.Test;
 
 public class TupleTests {
     @Test
-    public void Tuple2AsListWorksProperly() {
+    public void tuple2AsListWorksProperly() {
         Tuple2<Double> tuple = new Tuple2<>(1.0, 1.0);
 
         assertEquals(List.of(1.0, 1.0), tuple.toList());
     }
 
     @Test
-    public void Tuple2OfWorksProperly() {
+    public void tuple2OfWorksProperly() {
         Tuple2<Double> tuple = Tuple2.of(1.5, 2.0);
 
         assertEquals(1.5, tuple.firstValue(), 0);

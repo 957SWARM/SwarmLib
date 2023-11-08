@@ -11,7 +11,7 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
 See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License along with SpartanLib2. 
+You should have received a copy of the GNU General Public License along with this program. 
 If not, see <https://www.gnu.org/licenses/>.
 */
 package com.team957.lib.trajectory.motionProfile;
@@ -47,8 +47,20 @@ public class AsymmetricTrapezoidProfile extends MotionProfile {
      * phase of motion, and deceleration constraint for the final phase of motion.
      */
     public static class Constraints {
+
+        /** Maximum absolute velocity the profile can achieve. */
         public final double maxVelocity;
+
+        /**
+         * Maximum "acceleration" the profile can achieve. Note that this does not coorespond to
+         * "positive" acceleration, just the acceleration at the initial part of the profile.
+         */
         public final double maxAcceleration;
+
+        /**
+         * Maximum "deceleration" the profile can achieve. Note that this does not coorespond to
+         * "negative" acceleration, just the acceleration at the final part of the profile.
+         */
         public final double maxDeceleration;
 
         /**

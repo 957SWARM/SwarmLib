@@ -11,12 +11,10 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
 See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License along with SpartanLib2. 
+You should have received a copy of the GNU General Public License along with this program. 
 If not, see <https://www.gnu.org/licenses/>.
 */
 package com.team957.lib.util;
-
-import edu.wpi.first.wpilibj.Timer;
 
 /**
  * Class to simplify a common robot code action: getting a time elapsed between two points.
@@ -26,13 +24,17 @@ import edu.wpi.first.wpilibj.Timer;
 public class DeltaTimeUtil {
     private double lastTimestampSeconds;
 
+    private double getTimeSeconds() {
+        return ((double) System.currentTimeMillis()) / 1000;
+    }
+
     /**
      * Constructs an instance of DeltaTimeUtil.
      *
      * <p>The comparison base is initially set to the time as this is constructed.
      */
     public DeltaTimeUtil() {
-        lastTimestampSeconds = Timer.getFPGATimestamp();
+        lastTimestampSeconds = getTimeSeconds();
     }
 
     /**
@@ -44,12 +46,24 @@ public class DeltaTimeUtil {
      * @return Time, in seconds, elapsed between now and the comparison base.
      */
     public double getTimeSecondsSinceLastCall() {
-        double currentTime = Timer.getFPGATimestamp();
+        double currentTime = getTimeSeconds();
 
         double dt = currentTime - lastTimestampSeconds;
 
         lastTimestampSeconds = currentTime;
 
         return dt;
+    }
+
+    /**
+     * Returns the time elapsed between now and the comparison base. The comparison base is not
+     * changed following this call.
+     *
+     * <p>Time determined by WPI's {@code Timer.getFPGATimestamp()} method.
+     *
+     * @return Time, in seconds, elapsed between now and the comparison base.
+     */
+    public double getTimeSecondsSinceLastCallNoReset() {
+        return getTimeSeconds() - lastTimestampSeconds;
     }
 }

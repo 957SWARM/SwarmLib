@@ -11,21 +11,29 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
 See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License along with SpartanLib2. 
+You should have received a copy of the GNU General Public License along with this program. 
 If not, see <https://www.gnu.org/licenses/>.
 */
 package com.team957.lib.math.filters;
 
+import com.team957.lib.util.DeltaTimeUtil;
+
 /** Common superclass for this library's filters. */
 public abstract class Filter {
+    private final DeltaTimeUtil dtUtil = new DeltaTimeUtil();
+
     /**
-     * Adds the value to the window and calculates the current output of the filter. If dt would be
-     * a required parameter for the filter, uses 20 milliseconds (the robot loop period).
+     * Adds the value to the window and calculates the current output of the filter.
+     *
+     * <p>Uses the time elapsed since last calling this method as a parameter. If this method is
+     * being called for the first time, uses the time since construction.
      *
      * @param value The value to input to the filter.
      * @return The current output of the filter.
      */
-    public abstract double calculate(double value);
+    public double calculate(double value) {
+        return calculate(value, dtUtil.getTimeSecondsSinceLastCall());
+    }
 
     /**
      * Adds the value to the window and calculates the current output of the filter, with a change

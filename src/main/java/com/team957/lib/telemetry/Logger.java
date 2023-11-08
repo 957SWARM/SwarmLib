@@ -11,11 +11,12 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
 See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License along with SpartanLib2. 
+You should have received a copy of the GNU General Public License along with this program. 
 If not, see <https://www.gnu.org/licenses/>.
 */
 package com.team957.lib.telemetry;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -68,6 +69,7 @@ public class Logger<T> {
          * @param publishToNT Whether this should push logged values to NetworkTables.
          * @param recordInLog Whether this should store logged values in an on-robot log file.
          */
+        @SuppressFBWarnings("EI_EXPOSE_REP2")
         public LoggerFactory(
                 DataLog log, String subdirName, boolean publishToNT, boolean recordInLog) {
             this.log = log;
@@ -100,8 +102,8 @@ public class Logger<T> {
          * Constructs and returns a new logger with the parameters given above.
          *
          * @param key A string identifier for the logged field.
-         * @param lambda
-         * @return
+         * @param lambda Lambda (of logged type) to use as initial data source.
+         * @return A new Logger.
          */
         public Logger<U> getLogger(String key, Supplier<U> lambda) {
             return new Logger<>(lambda, log, key, key, publishToNT, recordInLog);
@@ -136,6 +138,7 @@ public class Logger<T> {
      * @param publishToNT Whether this should push logged values to NetworkTables.
      * @param recordInLog Whether this should store logged values in an on-robot log file.
      */
+    @SuppressFBWarnings("EI_EXPOSE_REP2")
     public Logger(
             Supplier<T> lambda,
             DataLog log,
@@ -147,7 +150,7 @@ public class Logger<T> {
         this.publishToNT = publishToNT;
         this.recordInLog = recordInLog;
 
-        logEntryIdentifier = subdirName + "_" + key;
+        logEntryIdentifier = subdirName + "/" + key;
 
         ntTopic = NetworkTableInstance.getDefault().getTable(subdirName).getTopic(key);
 
@@ -304,12 +307,10 @@ public class Logger<T> {
                 // floating-point numbers if first logged value is integer,
                 // so just cast all numerical types to double
                 if (dataType == NetworkTableType.kFloat || dataType == NetworkTableType.kInteger) {
-                    value = (double) value;
                     dataType = NetworkTableType.kDouble;
                 }
                 if (dataType == NetworkTableType.kFloatArray
                         || dataType == NetworkTableType.kIntegerArray) {
-                    value = (double[]) value;
                     dataType = NetworkTableType.kDoubleArray;
                 }
 
@@ -341,7 +342,7 @@ public class Logger<T> {
                         for (int i = 0; i < valueAsBytes.length; i++)
                             primitiveByteArray[i] = valueAsBytes[i];
 
-                        log.appendRaw(logHandle, (byte[]) value, 0);
+                        log.appendRaw(logHandle, primitiveByteArray, 0);
 
                         break;
                     case kBooleanArray:

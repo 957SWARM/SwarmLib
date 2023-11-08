@@ -11,7 +11,7 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
 See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License along with SpartanLib2. 
+You should have received a copy of the GNU General Public License along with this program. 
 If not, see <https://www.gnu.org/licenses/>.
 */
 package com.team957.lib.math;
@@ -26,7 +26,10 @@ import java.util.List;
 
 /** Various useful small math functions. */
 public class UtilityMath {
+    /** Default constant used for {@code epsilonEqualsProportion()}. */
     public static final double defaultProportionEpsilon = 1E-3;
+
+    /** Default constant used for {@code epsilonEqualsAbsolute()}. */
     public static final double defaultAbsoluteEpsilon = 1E-5;
 
     /**
@@ -400,7 +403,7 @@ public class UtilityMath {
                 || ((boundaryA >= toCheck) && (toCheck >= boundaryB)));
     }
 
-    /*
+    /**
      * Converts a point in polar coordinates into a point in Cartesian coordinates.
      *
      * @param angle The angle, in radians counterclockwise from the positive x-axis, of the point
@@ -458,7 +461,7 @@ public class UtilityMath {
             product = product * entry;
         }
 
-        return Math.pow(product, 1 / values.size());
+        return Math.pow(product, 1.0 / values.size());
     }
 
     /**

@@ -11,7 +11,7 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
 See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License along with SpartanLib2. 
+You should have received a copy of the GNU General Public License along with this program. 
 If not, see <https://www.gnu.org/licenses/>.
 */
 package com.team957.lib.trajectory.motionProfile;
@@ -29,7 +29,7 @@ import org.junit.Test;
  */
 public class TrapezoidProfileTests {
     @Test
-    public void TrapezoidProfileConstraintsEqualityWorks() {
+    public void trapezoidProfileConstraintsEqualityWorks() {
         Constraints constraints1 = new Constraints(1, 5);
         Constraints constraints2 = new Constraints(1.00001, 4.99999);
 
@@ -37,7 +37,7 @@ public class TrapezoidProfileTests {
     }
 
     @Test
-    public void TrapezoidProfileAgreesWithAsymmetricTrapezoidProfile() {
+    public void trapezoidProfileAgreesWithAsymmetricTrapezoidProfile() {
         TrapezoidProfile symmetrical =
                 new TrapezoidProfile(new Constraints(5, 3), new State(0, 5), new State(40, 2));
         AsymmetricTrapezoidProfile asymmetrical =

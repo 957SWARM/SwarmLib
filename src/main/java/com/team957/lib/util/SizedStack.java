@@ -11,7 +11,7 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
 See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License along with SpartanLib2. 
+You should have received a copy of the GNU General Public License along with this program. 
 If not, see <https://www.gnu.org/licenses/>.
 */
 package com.team957.lib.util;
@@ -26,6 +26,7 @@ import java.util.Stack;
  */
 public class SizedStack<T> extends Stack<T> {
 
+    /** I have no clue why but javadoc thinks this is public and therefore needs docs */
     private final int maxSize;
 
     /**
@@ -48,5 +49,15 @@ public class SizedStack<T> extends Stack<T> {
         }
 
         return item;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return super.equals(other);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 }

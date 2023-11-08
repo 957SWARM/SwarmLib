@@ -11,7 +11,7 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
 See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License along with SpartanLib2. 
+You should have received a copy of the GNU General Public License along with this program. 
 If not, see <https://www.gnu.org/licenses/>.
 */
 package com.team957.lib.telemetry;
@@ -42,8 +42,9 @@ public class HighLevelLogger implements IntrinsicLoggable {
     private static HighLevelLogger instance = new HighLevelLogger();
 
     private boolean hasStarted = false;
-    private final String commitDataFilename = "commit.txt";
-    private final String branchDataFilename = "branch.txt";
+    private static final String commitDataFilename =
+            "commit.txt"; // not running in place so this is needed
+    private static final String branchDataFilename = "branch.txt";
 
     private final HashMap<Command, Timer> commandTimeMap = new HashMap<>();
 
@@ -53,6 +54,11 @@ public class HighLevelLogger implements IntrinsicLoggable {
 
     private HighLevelLogger() {}
 
+    /**
+     * Returns the singleton instance of the HighLevelLogger.
+     *
+     * @return The HighLevelLogger.
+     */
     public static HighLevelLogger getInstance() {
         return instance;
     }

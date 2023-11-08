@@ -11,7 +11,7 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
 See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License along with SpartanLib2. 
+You should have received a copy of the GNU General Public License along with this program. 
 If not, see <https://www.gnu.org/licenses/>.
 */
 package com.team957.lib.util;
@@ -22,22 +22,22 @@ import org.junit.Test;
 
 /* Tests for the GearRatioHelper. **/
 public class GearRatioHelperTests {
-    private final double epsilon = 0.0001;
+    private static final double epsilon = 0.0001;
 
     @Test
-    public void GearRatioHelperInverseProperly() {
+    public void gearRatioHelperInverseProperly() {
         GearRatioHelper helper = new GearRatioHelper(5, 1);
         assertEquals(87.3, helper.inputFromOutput(helper.outputFromInput(87.3)), epsilon);
     }
 
     @Test
-    public void GearRatioHelperOutputToInput() {
+    public void gearRatioHelperOutputToInput() {
         GearRatioHelper helper = new GearRatioHelper(3, 5);
         assertEquals(12, helper.outputFromInput(20), epsilon);
     }
 
     @Test
-    public void GearRatioHelperInputToOutput() {
+    public void gearRatioHelperInputToOutput() {
         GearRatioHelper helper = new GearRatioHelper(7, 1);
         assertEquals(5, helper.inputFromOutput(35), epsilon);
     }

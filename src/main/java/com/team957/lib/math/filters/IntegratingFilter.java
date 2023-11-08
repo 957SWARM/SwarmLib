@@ -11,7 +11,7 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
 See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License along with SpartanLib2. 
+You should have received a copy of the GNU General Public License along with this program. 
 If not, see <https://www.gnu.org/licenses/>.
 */
 package com.team957.lib.math.filters;
@@ -38,18 +38,6 @@ public class IntegratingFilter extends Filter {
      */
     public IntegratingFilter(int window) {
         stack = new SizedStack<>(window);
-    }
-
-    @Override
-    /**
-     * Adds the value to the filter, and calculates the integral, using the default robot timestep
-     * of 20 milliseconds for dt.
-     *
-     * @param value Value to add to the window of the filter.
-     * @return Value of the (approximated) integral.
-     */
-    public double calculate(double value) {
-        return calculate(value, 0.02);
     }
 
     @Override

@@ -11,7 +11,7 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
 See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License along with SpartanLib2. 
+You should have received a copy of the GNU General Public License along with this program. 
 If not, see <https://www.gnu.org/licenses/>.
 */
 package com.team957.lib.math.filters;
@@ -21,10 +21,10 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 public class RateLimiterTests {
-    private final double epsilon = 0.0001;
+    private static final double epsilon = 0.0001;
 
     @Test
-    public void RateLimiterFunctional() {
+    public void rateLimiterFunctional() {
         RateLimiter limiter = new RateLimiter(5);
 
         assertEquals(2, limiter.calculate(2, 1), epsilon);

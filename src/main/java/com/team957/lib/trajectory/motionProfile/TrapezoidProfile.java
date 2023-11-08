@@ -11,7 +11,7 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
 See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License along with SpartanLib2. 
+You should have received a copy of the GNU General Public License along with this program. 
 If not, see <https://www.gnu.org/licenses/>.
 */
 package com.team957.lib.trajectory.motionProfile;
@@ -37,7 +37,10 @@ public class TrapezoidProfile extends AsymmetricTrapezoidProfile {
 
     /** Data class to hold the maximum allowed rates for the output of a TrapezoidProfile. */
     public static class Constraints {
+        /** Maximum absolute velocity the profile can achieve. */
         public final double maxVelocity;
+
+        /** Maximum absolute acceleration the profile can achieve. */
         public final double maxAcceleration;
 
         /**
