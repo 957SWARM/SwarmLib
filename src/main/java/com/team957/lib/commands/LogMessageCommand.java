@@ -17,7 +17,9 @@ If not, see <https://www.gnu.org/licenses/>.
 package com.team957.lib.commands;
 
 import com.team957.lib.telemetry.HighLevelLogger;
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Subsystem;
+import java.util.Set;
 import java.util.function.Supplier;
 
 /**
@@ -26,7 +28,7 @@ import java.util.function.Supplier;
  *
  * <p>This command initializes and ends in the same scheduler loop.
  */
-public class LogMessageCommand extends CommandBase {
+public class LogMessageCommand extends Command {
     private final Supplier<String> messageLambda;
 
     /**
@@ -49,18 +51,19 @@ public class LogMessageCommand extends CommandBase {
         this(() -> message);
     }
 
-    @Override
     public boolean runsWhenDisabled() {
         return true;
     }
 
-    @Override
     public void initialize() {
         HighLevelLogger.getInstance().logMessage(messageLambda.get());
     }
 
-    @Override
     public boolean isFinished() {
         return true;
+    }
+
+    public Set<Subsystem> getRequirements() {
+        return Set.of();
     }
 }
