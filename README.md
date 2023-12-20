@@ -42,11 +42,6 @@ repositories {
         implementation 'com.github.957SWARM:SwarmLib:dev-SNAPSHOT'
     }
    ```
-
-## Contributing:
-If you're a member of the Team997Coders org, you can simply create a branch inside this repo and make a pull request to `dev` when you're finished. Currently, 1 review is required and checks must pass to merge to `dev`. No direct commits to `main` are allowed.
-
-For people outside of the org, follow the same steps, except with your own fork. We'll accept any useful PRs!
-
+   
 ## License:
 Licensed under the GNU GPLv3.
