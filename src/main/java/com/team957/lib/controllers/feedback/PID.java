@@ -17,14 +17,12 @@ If not, see <https://www.gnu.org/licenses/>.
 package com.team957.lib.controllers.feedback;
 
 import com.team957.lib.math.UtilityMath;
-import com.team957.lib.telemetry.IntrinsicLoggable;
-import com.team957.lib.telemetry.Logger;
-import com.team957.lib.telemetry.Logger.LoggerFactory;
 import com.team957.lib.util.DeltaTimeUtil;
 import com.team957.lib.util.SizedStack;
 import edu.wpi.first.math.MathUtil;
-import edu.wpi.first.util.datalog.DataLog;
 import java.util.Objects;
+import monologue.Logged;
+import monologue.Monologue.LogBoth;
 
 /**
  * Implementation of a simple Proportional-Integral-Derivative feedback controller.
@@ -65,7 +63,7 @@ import java.util.Objects;
  * to make a velocity PID controller, or something else with a controlled quantity other than
  * position.
  */
-public class PID implements IntrinsicLoggable {
+public class PID implements Logged {
 
     /** Data class for holding the gains to a PID controller. */
     public static class PIDConstants {
@@ -166,32 +164,6 @@ public class PID implements IntrinsicLoggable {
     private double currentValue = 0;
 
     private final SizedStack<Double> integrationStack;
-
-    private boolean logsConstructed = false;
-
-    private Logger<Double> pGainLogger;
-    private Logger<Double> iGainLogger;
-    private Logger<Double> dGainLogger;
-
-    private Logger<Double> setpointLogger;
-    private Logger<Double> measurementLogger;
-    private Logger<Double> errorLogger;
-    private Logger<Double> integralAccumulationLogger;
-    private Logger<Double> errorVelocityLogger;
-
-    private Logger<Double> totalControlEffortLogger;
-    private Logger<Double> pControlEffortLogger;
-    private Logger<Double> iControlEffortLogger;
-    private Logger<Double> dControlEffortLogger;
-
-    private Logger<Double> maxAbsControlEffortLogger;
-    private Logger<Double> maxAbsPContributionLogger;
-    private Logger<Double> maxAbsIContributionLogger;
-    private Logger<Double> maxAbsDContributionLogger;
-
-    private Logger<Boolean> atSetpointLogger;
-    private Logger<Double> setpointPositionToleranceLogger;
-    private Logger<Double> setpointVelocityToleranceLogger;
 
     private final DeltaTimeUtil dtUtil = new DeltaTimeUtil();
 
@@ -335,47 +307,6 @@ public class PID implements IntrinsicLoggable {
         this(constants, 0, initialSetpoint);
     }
 
-    @Override
-    /** {@inheritDoc} */
-    public void autoGenerateLogs(
-            DataLog log, String name, String subdirName, boolean publishToNT, boolean recordInLog) {
-        if (!logsConstructed) {
-
-            LoggerFactory<Double> doubleLogFactory =
-                    new LoggerFactory<>(log, subdirName, publishToNT, recordInLog);
-
-            pGainLogger = doubleLogFactory.getLogger(name + "/pGain");
-            iGainLogger = doubleLogFactory.getLogger(name + "/iGain");
-            dGainLogger = doubleLogFactory.getLogger(name + "/dGain");
-
-            setpointLogger = doubleLogFactory.getLogger(name + "/setpoint");
-            measurementLogger = doubleLogFactory.getLogger(name + "/measurement");
-            errorLogger = doubleLogFactory.getLogger(name + "/error");
-            integralAccumulationLogger = doubleLogFactory.getLogger(name + "/integralAccumulation");
-            errorVelocityLogger = doubleLogFactory.getLogger(name + "/errorVelocity");
-
-            totalControlEffortLogger = doubleLogFactory.getLogger(name + "/totalControlEffort");
-            pControlEffortLogger = doubleLogFactory.getLogger(name + "/pControlEffort");
-            iControlEffortLogger = doubleLogFactory.getLogger(name + "/iControlEffort");
-            dControlEffortLogger = doubleLogFactory.getLogger(name + "/dControlEffort");
-
-            maxAbsControlEffortLogger = doubleLogFactory.getLogger(name + "/maxAbsControlEffort");
-            maxAbsPContributionLogger = doubleLogFactory.getLogger(name + "/maxAbsPControlEffort");
-            maxAbsIContributionLogger = doubleLogFactory.getLogger(name + "/maxAbsIControlEffort");
-            maxAbsDContributionLogger = doubleLogFactory.getLogger(name + "/maxAbsDControlEffort");
-
-            atSetpointLogger =
-                    new Logger<>(log, name + "/atSetpoint", subdirName, publishToNT, recordInLog);
-
-            setpointPositionToleranceLogger =
-                    doubleLogFactory.getLogger(name + "/setpointPositionTolerance");
-            setpointVelocityToleranceLogger =
-                    doubleLogFactory.getLogger(name + "/setpointVelocityTolerance");
-
-            logsConstructed = true;
-        }
-    }
-
     /**
      * Sets the gains of the controller using provided gains.
      *
@@ -414,6 +345,7 @@ public class PID implements IntrinsicLoggable {
      *
      * @return The current kP.
      */
+    @LogBoth
     public double getkP() {
         return kP;
     }
@@ -432,6 +364,7 @@ public class PID implements IntrinsicLoggable {
      *
      * @return The current kI.
      */
+    @LogBoth
     public double getkI() {
         return kI;
     }
@@ -450,6 +383,7 @@ public class PID implements IntrinsicLoggable {
      *
      * @return The current kD.
      */
+    @LogBoth
     public double getkD() {
         return kD;
     }
@@ -478,6 +412,7 @@ public class PID implements IntrinsicLoggable {
      *
      * @return The current setpoint.
      */
+    @LogBoth
     public double getSetpoint() {
         return setpoint;
     }
@@ -488,6 +423,7 @@ public class PID implements IntrinsicLoggable {
      *
      * @return The integral of error with respect to time from the last reset to now.
      */
+    @LogBoth
     public double getIntegralAccumulation() {
         double integrationSum = 0;
 
@@ -533,6 +469,7 @@ public class PID implements IntrinsicLoggable {
      *
      * @return The maximum allowed position error, as a proportion of the setpoint.
      */
+    @LogBoth
     public double getSetpointPositionTolerance() {
         return positionTolerance;
     }
@@ -542,6 +479,7 @@ public class PID implements IntrinsicLoggable {
      *
      * @return The maximum allowed absolute velocity per second, as a proportion of the setpoint.
      */
+    @LogBoth
     public double getSetpointVelocityTolerance() {
         return velocityTolerance;
     }
@@ -599,41 +537,12 @@ public class PID implements IntrinsicLoggable {
         return currentValue;
     }
 
-    @Override
-    /** {@inheritDoc} */
-    public void updateLogs() {
-        if (logsConstructed) {
-            pGainLogger.update(getkP());
-            iGainLogger.update(getkI());
-            dGainLogger.update(getkD());
-
-            setpointLogger.update(lastSetpoint);
-            measurementLogger.update(lastMeasurement);
-            errorLogger.update(lastSetpoint - lastMeasurement);
-            integralAccumulationLogger.update(getIntegralAccumulation());
-            errorVelocityLogger.update(velocity);
-
-            totalControlEffortLogger.update(currentValue);
-            pControlEffortLogger.update(getPContribution());
-            iControlEffortLogger.update(getIContribution());
-            dControlEffortLogger.update(getDContribution());
-
-            maxAbsControlEffortLogger.update(maxAbsControlEffort);
-            maxAbsPContributionLogger.update(maxAbsPContribution);
-            maxAbsIContributionLogger.update(maxAbsIContribution);
-            maxAbsDContributionLogger.update(maxAbsDContribution);
-
-            atSetpointLogger.update(atSetpoint());
-            setpointPositionToleranceLogger.update(positionTolerance);
-            setpointVelocityToleranceLogger.update(velocityTolerance);
-        }
-    }
-
     /**
      * Returns the last output of the controller without updating with a new value.
      *
      * @return The last output of the controller.
      */
+    @LogBoth
     public double getCurrentValue() {
         return currentValue;
     }
@@ -643,6 +552,7 @@ public class PID implements IntrinsicLoggable {
      *
      * @return The last P result. Equal to 0 if {@code calculate()} has not been called.
      */
+    @LogBoth
     public double getPContribution() {
         return lastPContribution;
     }
@@ -652,6 +562,7 @@ public class PID implements IntrinsicLoggable {
      *
      * @return The last I result. Equal to 0 if {@code calculate()} has not been called.
      */
+    @LogBoth
     public double getIContribution() {
         return lastIContribution;
     }
@@ -661,6 +572,7 @@ public class PID implements IntrinsicLoggable {
      *
      * @return The last D result. Equal to 0 if {@code calculate()} has not been called.
      */
+    @LogBoth
     public double getDContribution() {
         return lastDContribution;
     }
@@ -712,6 +624,7 @@ public class PID implements IntrinsicLoggable {
      *
      * @return The maximum absolute P contribution. If zero, no limits are being applied.
      */
+    @LogBoth
     public double getMaxAbsControlEffort() {
         return maxAbsControlEffort;
     }
@@ -722,6 +635,7 @@ public class PID implements IntrinsicLoggable {
      *
      * @return The maximum absolute P contribution. If zero, no limits are being applied.
      */
+    @LogBoth
     public double getMaxAbsPContribution() {
         return maxAbsPContribution;
     }
@@ -731,6 +645,7 @@ public class PID implements IntrinsicLoggable {
      *
      * @return The maximum absolute I contribution. If zero, no limits are being applied.
      */
+    @LogBoth
     public double getMaxAbsIContribution() {
         return maxAbsIContribution;
     }
@@ -740,6 +655,7 @@ public class PID implements IntrinsicLoggable {
      *
      * @return The maximum absolute D contribution. If zero, no limits are being applied.
      */
+    @LogBoth
     public double getMaxAbsDContribution() {
         return maxAbsDContribution;
     }
@@ -762,6 +678,7 @@ public class PID implements IntrinsicLoggable {
      *
      * @return Whether the controller is within the minimum position and velocity errors.
      */
+    @LogBoth
     public boolean atSetpoint() {
         return (Math.abs(setpoint - lastMeasurement) < Math.abs(positionTolerance * setpoint)
                 && Math.abs(velocity) < Math.abs(velocityTolerance * setpoint));

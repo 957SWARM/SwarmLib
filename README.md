@@ -19,18 +19,6 @@ Reusable robot code for FIRST Robotics Competition Team 957.
 
 This library is fundamentally based on work originally done under FRC 997!
 
-## Contents:
-Currently, the library contains 7 sub-packages:
-
-- `commands`: Command framework abstractions
-- `controllers`: Feedback controllers
-- `hardware`: Wrappers and abstractions for common FRC hardware
-- `math`: Filters, utility operations
-- `models`: System models and kinematics
-- `telemetry`: Logging
-- `trajectory`: Trajectory generation, motion profiles
-- `util`: Utilities
-
 ## Installation
 Artifacts are published through JitPack, so installation is easy.
 1) Add the JitPack repository:
