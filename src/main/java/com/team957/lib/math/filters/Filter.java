@@ -17,9 +17,11 @@ If not, see <https://www.gnu.org/licenses/>.
 package com.team957.lib.math.filters;
 
 import com.team957.lib.util.DeltaTimeUtil;
+import monologue.Logged;
+import monologue.Monologue.LogBoth;
 
 /** Common superclass for this library's filters. */
-public abstract class Filter {
+public abstract class Filter implements Logged {
     private final DeltaTimeUtil dtUtil = new DeltaTimeUtil();
 
     /**
@@ -57,6 +59,7 @@ public abstract class Filter {
      * @return The current output of the filter (0 if no values have been given to {@code
      *     calculate()}).
      */
+    @LogBoth
     public abstract double getCurrentOutput();
 
     /**

@@ -19,18 +19,6 @@ Reusable robot code for FIRST Robotics Competition Team 957.
 
 This library is fundamentally based on work originally done under FRC 997!
 
-## Contents:
-Currently, the library contains 7 sub-packages:
-
-- `commands`: Command framework abstractions
-- `controllers`: Feedback controllers
-- `hardware`: Wrappers and abstractions for common FRC hardware
-- `math`: Filters, utility operations
-- `models`: System models and kinematics
-- `telemetry`: Logging
-- `trajectory`: Trajectory generation, motion profiles
-- `util`: Utilities
-
 ## Installation
 Artifacts are published through JitPack, so installation is easy.
 1) Add the JitPack repository:
@@ -54,11 +42,6 @@ repositories {
         implementation 'com.github.957SWARM:SwarmLib:dev-SNAPSHOT'
     }
    ```
-
-## Contributing:
-If you're a member of the Team997Coders org, you can simply create a branch inside this repo and make a pull request to `dev` when you're finished. Currently, 1 review is required and checks must pass to merge to `dev`. No direct commits to `main` are allowed.
-
-For people outside of the org, follow the same steps, except with your own fork. We'll accept any useful PRs!
-
+   
 ## License:
 Licensed under the GNU GPLv3.
