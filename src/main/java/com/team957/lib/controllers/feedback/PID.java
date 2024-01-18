@@ -21,8 +21,8 @@ import com.team957.lib.util.DeltaTimeUtil;
 import com.team957.lib.util.SizedStack;
 import edu.wpi.first.math.MathUtil;
 import java.util.Objects;
+import monologue.Annotations.Log;
 import monologue.Logged;
-import monologue.Monologue.LogBoth;
 
 /**
  * Implementation of a simple Proportional-Integral-Derivative feedback controller.
@@ -345,7 +345,7 @@ public class PID implements Logged {
      *
      * @return The current kP.
      */
-    @LogBoth
+    @Log
     public double getkP() {
         return kP;
     }
@@ -364,7 +364,7 @@ public class PID implements Logged {
      *
      * @return The current kI.
      */
-    @LogBoth
+    @Log
     public double getkI() {
         return kI;
     }
@@ -383,7 +383,7 @@ public class PID implements Logged {
      *
      * @return The current kD.
      */
-    @LogBoth
+    @Log
     public double getkD() {
         return kD;
     }
@@ -412,7 +412,7 @@ public class PID implements Logged {
      *
      * @return The current setpoint.
      */
-    @LogBoth
+    @Log
     public double getSetpoint() {
         return setpoint;
     }
@@ -423,7 +423,7 @@ public class PID implements Logged {
      *
      * @return The integral of error with respect to time from the last reset to now.
      */
-    @LogBoth
+    @Log
     public double getIntegralAccumulation() {
         double integrationSum = 0;
 
@@ -469,7 +469,7 @@ public class PID implements Logged {
      *
      * @return The maximum allowed position error, as a proportion of the setpoint.
      */
-    @LogBoth
+    @Log
     public double getSetpointPositionTolerance() {
         return positionTolerance;
     }
@@ -479,7 +479,7 @@ public class PID implements Logged {
      *
      * @return The maximum allowed absolute velocity per second, as a proportion of the setpoint.
      */
-    @LogBoth
+    @Log
     public double getSetpointVelocityTolerance() {
         return velocityTolerance;
     }
@@ -542,7 +542,7 @@ public class PID implements Logged {
      *
      * @return The last output of the controller.
      */
-    @LogBoth
+    @Log
     public double getCurrentValue() {
         return currentValue;
     }
@@ -552,7 +552,7 @@ public class PID implements Logged {
      *
      * @return The last P result. Equal to 0 if {@code calculate()} has not been called.
      */
-    @LogBoth
+    @Log
     public double getPContribution() {
         return lastPContribution;
     }
@@ -562,7 +562,7 @@ public class PID implements Logged {
      *
      * @return The last I result. Equal to 0 if {@code calculate()} has not been called.
      */
-    @LogBoth
+    @Log
     public double getIContribution() {
         return lastIContribution;
     }
@@ -572,7 +572,7 @@ public class PID implements Logged {
      *
      * @return The last D result. Equal to 0 if {@code calculate()} has not been called.
      */
-    @LogBoth
+    @Log
     public double getDContribution() {
         return lastDContribution;
     }
@@ -624,7 +624,7 @@ public class PID implements Logged {
      *
      * @return The maximum absolute P contribution. If zero, no limits are being applied.
      */
-    @LogBoth
+    @Log
     public double getMaxAbsControlEffort() {
         return maxAbsControlEffort;
     }
@@ -635,7 +635,7 @@ public class PID implements Logged {
      *
      * @return The maximum absolute P contribution. If zero, no limits are being applied.
      */
-    @LogBoth
+    @Log
     public double getMaxAbsPContribution() {
         return maxAbsPContribution;
     }
@@ -645,7 +645,7 @@ public class PID implements Logged {
      *
      * @return The maximum absolute I contribution. If zero, no limits are being applied.
      */
-    @LogBoth
+    @Log
     public double getMaxAbsIContribution() {
         return maxAbsIContribution;
     }
@@ -655,7 +655,7 @@ public class PID implements Logged {
      *
      * @return The maximum absolute D contribution. If zero, no limits are being applied.
      */
-    @LogBoth
+    @Log
     public double getMaxAbsDContribution() {
         return maxAbsDContribution;
     }
@@ -678,7 +678,7 @@ public class PID implements Logged {
      *
      * @return Whether the controller is within the minimum position and velocity errors.
      */
-    @LogBoth
+    @Log
     public boolean atSetpoint() {
         return (Math.abs(setpoint - lastMeasurement) < Math.abs(positionTolerance * setpoint)
                 && Math.abs(velocity) < Math.abs(velocityTolerance * setpoint));
