@@ -1,11 +1,11 @@
 plugins {
 	id "java"
-	id "edu.wpi.first.GradleRIO" version "2023.1.1-beta-3"
+	id "edu.wpi.first.GradleRIO" version "2023.1.1"
 	id 'com.diffplug.spotless' version '6.11.0'
 	id("com.github.spotbugs") version "5.0.14"
 }
 
-def VERSION = "1.5.99"
+def VERSION = "1.6.0"
 
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
@@ -27,9 +27,9 @@ dependencies {
 	implementation wpi.java.deps.wpilib()
 	implementation wpi.java.vendor.java()
 
-	implementation group: 'edu.wpi.first.wpilibNewCommands', name: 'wpilibNewCommands-java', version: '2024.1.1-beta-3'
+	implementation group: 'edu.wpi.first.wpilibNewCommands', name: 'wpilibNewCommands-java', version: '2024.1.1'
 
-	implementation 'com.github.shueja:Monologue:v1.0.0-alpha2'
+	implementation 'com.github.shueja:Monologue:v1.0.0-beta4'
 
 	// implementation group : 'com.revrobotics.frc', name: "REVLib-java", version: '2023.1.3'
 
