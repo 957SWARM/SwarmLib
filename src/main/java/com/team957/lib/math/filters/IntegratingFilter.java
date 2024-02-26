@@ -30,14 +30,18 @@ public class IntegratingFilter extends Filter {
 
     private double previousInputValue = 0;
 
+    private final boolean infinite;
+
     /**
      * Constructs an IntegratingFilter.
      *
      * @param window Number of values to look back in calculating the integral. If zero or negative,
-     *     will instead be an indefinite window.
+     *     will instead be an infinite window.
      */
     public IntegratingFilter(int window) {
         stack = new SizedStack<>(window);
+
+        infinite = (window < 1);
     }
 
     @Override
@@ -49,6 +53,14 @@ public class IntegratingFilter extends Filter {
      * @return Value of the (approximated) integral.
      */
     public double calculate(double value, double dt) {
+        if (infinite) {
+            currentOutput = currentOutput + (dt * 0.5 * (value + previousInputValue));
+
+            previousInputValue = value;
+
+            return currentOutput;
+        }
+
         stack.push(dt * 0.5 * (value + previousInputValue));
 
         double sum = 0;
